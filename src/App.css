@@ -1,38 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cambo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+* {
+  scroll-behavior: smooth;
+}
+
+p,
+span {
+  font-family: "Inter", sans-serif;
+  margin: 0px;
+  padding: 0px;
+  font-size: 1em;
+}
+
+.backgroundImage {
+  background-image: url(./assets/background.jpg);
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background-color: #000c13f6;
   color: white;
+  padding-top: 100px;
+  padding-bottom: 70px;
 }
 
-.App-link {
-  color: #61dafb;
+.pagination {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  color: white;
+  width: "100%";
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.pageHeader {
+  font-family: "Cambo", serif;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  font-size: 3em;
+  text-align: center;
+  padding: 4px;
+  border-radius: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+@media (min-width: 700px) {
+  .App {
+    padding-top: 150px;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media (min-width: 1000px) {
+  .pageHeader {
+    font-size: 4vw;
+  }
+  p,
+  span {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 1400px) {
+  .App {
+    padding-top: 200px;
   }
 }

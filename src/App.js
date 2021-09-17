@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import HomePage from "../src/Pages/HomePage";
+import LatestMoviesPage from "./Pages/LatestMoviesPage";
+import MovieDetailPage from "./Pages/MovieDetailPage";
+import PersonPage from "./Pages/PersonPage";
+import GenrePage from "./Pages/GenrePage";
+import TopRatedPage from "./Pages/TopRatedPage";
+import SearchPage from "./Pages/SearchPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Header />
+      <div className="backgroundImage">
+        <div className="App">
+          <Switch>
+            <Route path="/" component={HomePage} exact />
+
+            <Route path="/latest" component={LatestMoviesPage} exact />
+
+            <Route path="/top" component={TopRatedPage} exact />
+
+            <Route path="/movies/:id" component={MovieDetailPage} />
+
+            <Route path="/person/:id" component={PersonPage} />
+
+            <Route path="/genre/:id" component={GenrePage} />
+
+            <Route path="/search" component={SearchPage} />
+          </Switch>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 

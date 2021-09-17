@@ -1,0 +1,69 @@
+.movies {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.movieContainer {
+  width: 100%;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movieCard {
+  width: 45vw;
+  margin: 5px;
+}
+
+.movieCard:hover {
+  cursor: pointer;
+}
+
+.poster {
+  height: 200px;
+  width: 100%;
+  border-radius: 10px;
+  background-position: center;
+  background-size: cover;
+}
+
+.title {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 576px) {
+}
+
+@media screen and (min-width: 769px) {
+  .movies {
+    grid-template-columns: auto auto auto;
+  }
+
+  .movieCard {
+    width: 30vw;
+  }
+}
+
+@media screen and (min-width: 1224px) {
+  .movies {
+    grid-template-columns: auto auto auto auto;
+  }
+  .movieCard {
+    width: 20vw;
+    margin: 10px;
+  }
+}
+
+@media screen and (min-width: 1408px) {
+  .movieCard {
+    width: 20vw;
+    margin: 20px;
+  }
+  .poster {
+    height: 250px;
+    width: 100%;
+  }
+}
