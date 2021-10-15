@@ -2,10 +2,11 @@ import React from "react";
 import "../styles/Search.css";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import PagePagination from "../components/PagePagination";
 import { getMoviesBySearch } from "../services/API";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from "@material-ui/core/styles";
 
 function SearchPage() {
   const [searchText, setSearchText] = useState("");
@@ -30,6 +31,21 @@ function SearchPage() {
     setSearchInputText(e.target.value);
   };
 
+   const useStyles = makeStyles(() => ({
+    ul: {
+      "& .MuiPaginationItem-root": {
+        color: "white",
+      },
+    },
+  }));
+  const classes = useStyles();
+  // Scroll to top when page changes
+  const handlePageChange = (page) => {
+    setPage(page);
+    window.scroll(0, 0);
+    
+  };
+
   return (
     <div className="background">
       <p className="pageHeader">Search for movies </p>
@@ -44,8 +60,7 @@ function SearchPage() {
           />
         </form>
       </div>
-      {/* Visa Loading... om sidan laddas */}
-      {isLoading && <p>Waiting for input...</p>}
+      
 
       {/* Visa Datan när den har laddats */}
 
@@ -86,7 +101,18 @@ function SearchPage() {
         </div>
       )}
 
-      <PagePagination setPage={setPage} />
+       <div className="pagination">
+      <Pagination
+        classes={{ ul: classes.ul }}
+        onChange={(e) => handlePageChange(e.target.textContent)}
+        count={data?.results.total_pages}
+        color="primary"
+        hideNextButton
+        hidePrevButton
+      />
+    </div>
+
+     
     </div>
   );
 }

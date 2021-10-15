@@ -5,7 +5,8 @@ import "../styles/MoviePage.css";
 import { useState } from "react";
 import { getTopRatedMovies } from "../services/API";
 import { useQuery } from "react-query";
-import PagePagination from "../components/PagePagination";
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from "@material-ui/core/styles";
 
 function TopRatedPage() {
   const history = useHistory();
@@ -18,6 +19,20 @@ function TopRatedPage() {
     ["topRatedMovies", page],
     () => getTopRatedMovies(page)
   );
+
+   const useStyles = makeStyles(() => ({
+    ul: {
+      "& .MuiPaginationItem-root": {
+        color: "white",
+      },
+    },
+  }));
+  const classes = useStyles();
+  // Scroll to top when page changes
+  const handlePageChange = (page) => {
+    setPage(page);
+    window.scroll(0, 0);
+  };
   return (
     <div className="background">
       <p className="pageHeader">Top Rated Movies</p>
@@ -66,7 +81,17 @@ function TopRatedPage() {
         </div>
       )}
 
-      <PagePagination setPage={setPage} />
+
+       <div className="pagination">
+      <Pagination
+        classes={{ ul: classes.ul }}
+        onChange={(e) => handlePageChange(e.target.textContent)}
+        count={data?.results.total_pages}
+        color="primary"
+        hideNextButton
+        hidePrevButton
+      />
+    </div>
     </div>
   );
 }

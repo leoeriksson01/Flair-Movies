@@ -57,7 +57,7 @@ function MovieDetailPage() {
             <div className="categories">
               <p> Categories: </p>
               {data.results.genres.map((genre, i) => (
-                <div key={i} onClick={() => history.push(`/genre/${genre.id}`)}>
+                <div key={i} onClick={() => history.push(`/genre/${genre.id}/1`)}>
                   <p>{genre.name}</p>
                 </div>
               ))}

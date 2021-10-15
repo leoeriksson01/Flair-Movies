@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import Pagination from "@material-ui/lab/Pagination";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,3 +30,4 @@ export default function PagePagination({ setPage, numOfPages = 20 }) {
     </div>
   );
 }
+ */

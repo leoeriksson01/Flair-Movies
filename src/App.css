@@ -22,15 +22,42 @@ span {
   background-size: cover;
 }
 
+.genrePagination a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  margin: 0px 10px 0px 10px;
+  padding: 0 6px;
+  font-size: 0.875rem;
+  min-width: 32px;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: 400;
+  width: 150px;
+  line-height: 1.43;
+  border-radius: 16px;
+  letter-spacing: 0.01071em;
+  color: white;
+  background-color: #3f51b5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.genrePagination a:hover {
+  color: gray;
+}
+
 .App {
   min-height: 100vh;
-  background-color: #000c13f6;
+  background-color: #01011bfa;
   color: white;
   padding-top: 100px;
   padding-bottom: 70px;
 }
 
-.pagination {
+.pagination,
+.genrePagination {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -52,9 +79,40 @@ span {
   font-weight: bold;
 }
 
-@media (min-width: 700px) {
+.categoryContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.categoryCard {
+  background-color: rgb(15, 15, 15);
+  width: 90%;
+  text-align: center;
+  margin: 5%;
+  padding: 10px 0px 10px 0px;
+  border-radius: 10px;
+  transition: 1.5s;
+}
+.categoryCard:hover {
+  transform: translateY(10px) scale(1.1);
+  cursor: pointer;
+  background: rgb(97, 97, 97);
+}
+.categoryCard p {
+  color: #01b4e4;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
   .App {
     padding-top: 150px;
+  }
+}
+
+@media (min-width: 768px) {
+  .categoryContainer {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -68,8 +126,11 @@ span {
   }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 1300px) {
   .App {
     padding-top: 200px;
+  }
+  .categoryContainer {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

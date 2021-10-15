@@ -1,27 +1,28 @@
 import React from "react";
 import Alert from "react-bootstrap/Alert";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import "../styles/MoviePage.css";
-import { useState } from "react";
-import { getMoviesByGenreId } from "../services/API";
 import { useQuery } from "react-query";
-import PagePagination from "../components/PagePagination";
+import { getGenrePages } from "../services/Pagination";
 
 function CategoryPage() {
+
   const history = useHistory();
 
-  // Skapa page state som börjar på sida 1 som sedan går att uppdatera
-  const [page, setPage] = useState(1);
+  let { page, id, name } = useParams();
+
 
   // Query för att hantera hämtningen av data samt error tillsammans med sidan
   const { data, error, isError, isLoading } = useQuery(
-    ["genreMovies", page],
-    () => getMoviesByGenreId(page)
+    [`getMoviesByGenreId${id}`, page],
+    () => {
+      return getGenrePages(id, page);
+    }
   );
 
   return (
     <div className="background">
-      <p className="pageHeader">Popular Movies By Chosen Category</p>
+      
 
       {/* Visa Loading... om sidan laddas */}
       {isLoading && <p>Loading...</p>}
@@ -32,7 +33,11 @@ function CategoryPage() {
       {/* Visa Datan när den har laddats */}
 
       {data?.results && (
+
+        
+       
         <div className="movieContainer">
+          <p className="pageHeader">Popular Movies for category {name}</p>
           <div className="movies">
             {data.results.results.map((movie) => (
               <div
@@ -67,7 +72,25 @@ function CategoryPage() {
         </div>
       )}
 
-      <PagePagination setPage={setPage} />
+        <div className="genrePagination">
+          {/* If current page is 1, don't show the previous page button */}
+            {parseInt(page) !== 1 &&  (
+              <Link
+                to={`/genre/${id}/${parseInt(page) - 1}`}
+              >
+                Previous Page
+              </Link>
+            )}
+            <span className="currentPage">Page:{page}</span>
+            {/* If page is less than total_pages, show next page button */}
+            {parseInt(page) < (`${data?.results.total_results}`) && (
+              <Link
+                to={`/genre/${id}/${parseInt(page) + 1}`}
+              >
+                Next Page
+              </Link>
+            )}
+          </div>
     </div>
   );
 }

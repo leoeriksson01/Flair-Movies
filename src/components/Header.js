@@ -6,7 +6,7 @@ const Header = () => {
     <>
       <div className="header">
         <div className="topNav">
-          <Link to="/">Flair Movies</Link>
+          <Link to="/popular">Flair Movies</Link>
           <a
             href="https://www.themoviedb.org/"
             target="_blank"
@@ -20,6 +20,7 @@ const Header = () => {
           <Link to="/latest"> Latest </Link>
           <Link to="/top"> Top </Link>
           <Link to="/search"> Search </Link>
+          <Link to="/genres"> Genres </Link>
         </div>
       </div>
     </>

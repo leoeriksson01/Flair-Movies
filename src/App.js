@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
 import HomePage from "../src/Pages/HomePage";
 import LatestMoviesPage from "./Pages/LatestMoviesPage";
 import MovieDetailPage from "./Pages/MovieDetailPage";
@@ -8,6 +8,7 @@ import PersonPage from "./Pages/PersonPage";
 import GenrePage from "./Pages/GenrePage";
 import TopRatedPage from "./Pages/TopRatedPage";
 import SearchPage from "./Pages/SearchPage";
+import GenresPage from "./Pages/GenresPage";
 
 function App() {
   return (
@@ -26,9 +27,12 @@ function App() {
 
             <Route path="/person/:id" component={PersonPage} />
 
-            <Route path="/genre/:id" component={GenrePage} />
+            <Route exact path="/genre/:id/:page?">
+              <GenrePage />
+            </Route>
 
             <Route path="/search" component={SearchPage} />
+            <Route path="/genres" component={GenresPage} />
           </Switch>
         </div>
       </div>

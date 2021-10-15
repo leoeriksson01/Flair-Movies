@@ -2,21 +2,39 @@ import React from "react";
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router-dom";
 import "../styles/MoviePage.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { getPopularMovies } from "../services/API";
 import { useQuery } from "react-query";
-import PagePagination from "../components/PagePagination";
+import Pagination from "@material-ui/lab/Pagination";
+import { makeStyles } from "@material-ui/core/styles";
 function HomePage() {
+  
   const history = useHistory();
 
   // Skapa page state som börjar på sida 1 som sedan går att uppdatera
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState();
 
   // Query för att hantera hämtningen av data samt error tillsammans med sidan
   const { data, error, isError, isLoading } = useQuery(
     ["popularMovies", page],
     () => getPopularMovies(page)
   );
+
+
+
+  const useStyles = makeStyles(() => ({
+    ul: {
+      "& .MuiPaginationItem-root": {
+        color: "white",
+      },
+    },
+  }));
+  const classes = useStyles();
+  // Scroll to top when page changes
+  const handlePageChange = (page) => {
+    setPage(page);
+    window.scroll(0, 0);
+  };
 
   return (
     <div className="background">
@@ -63,10 +81,22 @@ function HomePage() {
               </div>
             ))}
           </div>
+          <div className="pagination">
+      <Pagination
+       
+        classes={{ ul: classes.ul }}
+        onChange={(e) => handlePageChange(e.target.textContent)}
+        count={data?.results.total_pages}
+        color="primary"
+        hideNextButton
+        hidePrevButton
+      />
+    </div>
         </div>
+        
       )}
 
-      <PagePagination setPage={setPage} />
+      
     </div>
   );
 }

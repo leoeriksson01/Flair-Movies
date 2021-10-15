@@ -40,15 +40,21 @@ export const getPersonById = async (id) => {
   );
 };
 
-export const getMoviesByGenreId = async (id) => {
+export const getMoviesByGenreId = async (id, page) => {
   return await get(
-    `/discover/movie?api_key=2bb7ef370c6b66ee73f2d6df84dca7f3&sort_by_popularity&with_genre=${id}`
+    `/discover/movie?api_key=2bb7ef370c6b66ee73f2d6df84dca7f3&sort_by_popularity&with_genre=${id}&page=${page}`
   );
 };
 
 export const getMoviesBySearch = async (page, searchText) => {
   return await get(
     `/search/movie?api_key=2bb7ef370c6b66ee73f2d6df84dca7f3&language=en-US&query=${searchText}&page=${page}`
+  );
+};
+
+export const getGenres = async (page, id) => {
+  return await get(
+    `/genre/movie/list?api_key=2bb7ef370c6b66ee73f2d6df84dca7f3`
   );
 };
 
